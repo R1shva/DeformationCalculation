@@ -1,0 +1,31 @@
+var car, wall;
+var speed, weight;
+var deformation;
+
+function setup() {
+  createCanvas(800,400);
+  car = createSprite(0, 200, 50, 50);
+  wall = createSprite(400, 200, 200, 50);
+
+  speed = random(55, 90);
+  weight = random(400, 1500);
+
+  deformation = 0.5*weight*speed*speed/22500;
+}
+
+function draw() {
+  if(!(car.isTouching(wall))){
+    car.velocityX = speed;
+  }
+  if(deformation < 100){
+    car.shapeColor = "green";
+  } 
+  if(100 < deformation < 180){
+    car.shapeColor = "yellow";
+  } 
+  if(180 < deformation){
+    car.shapeColor = "red";
+  } 
+  background(255,255,255);  
+  drawSprites();
+}
